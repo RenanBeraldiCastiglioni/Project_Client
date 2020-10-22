@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using ProjectClient.Models;
+using ProjectClient.Models.ViewModels;
 
 namespace ProjectClient.Controllers
 {
@@ -18,6 +18,7 @@ namespace ProjectClient.Controllers
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
+            ViewData["Built"] = "This project was built by Renan Beraldi";
 
             return View();
         }
