@@ -15,5 +15,7 @@ namespace ProjectClient.Models
         public string Neighborhood { get; set; }
         public string State { get; set; }
         public double ZIP { get; set; }
+        public double PhoneNumber { get; set; }
+        public double CellphoneNumber { get; set; }
     }
 }

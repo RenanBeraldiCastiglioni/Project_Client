@@ -53,7 +53,7 @@ namespace ProjectClient.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,CPF,Name,BirthDate,Address,Neighborhood,State,ZIP")] Client client)
+        public async Task<IActionResult> Create([Bind("Id,CPF,Name,BirthDate,Address,Neighborhood,State,ZIP,CellphonNumber,PhoneNumber")] Client client)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +85,7 @@ namespace ProjectClient.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,CPF,Name,BirthDate,Address,Neighborhood,State,ZIP")] Client client)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,CPF,Name,BirthDate,Address,Neighborhood,State,ZIP,CellphoneNumber,PhoneNumber")] Client client)
         {
             if (id != client.Id)
             {
