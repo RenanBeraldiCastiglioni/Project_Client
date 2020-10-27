@@ -28,6 +28,11 @@
                 <span asp-validation-for="BirthDate" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="ZIP" class="control-label"></label>
+                <input asp-for="ZIP" class="form-control" />
+                <span asp-validation-for="ZIP" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="Address" class="control-label"></label>
                 <input asp-for="Address" class="form-control" />
                 <span asp-validation-for="Address" class="text-danger"></span>
@@ -43,11 +48,6 @@
                 <span asp-validation-for="State" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ZIP" class="control-label"></label>
-                <input asp-for="ZIP" class="form-control" />
-                <span asp-validation-for="ZIP" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="CellphoneNumber" class="control-label"></label>
                 <input asp-for="CellphoneNumber" class="form-control" />
                 <span asp-validation-for="CellphoneNumber" class="text-danger"></span>
@@ -58,10 +58,17 @@
                 <span asp-validation-for="PhoneNumber" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Enviar" class="btn btn-default" />
             </div>
         </form>
     </div>
+</div>
+
+<div>
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationMessageFor(a => a.CPF)
+    }
 </div>
 
 <div>
@@ -70,4 +77,42 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+        //$(document).ready(function () {
+        //    alert("Test");
+        //});
+        jQuery(function ($) {
+            $("input[name='ZIP']").change(function () {
+                var cep_code = $(this).val();
+                if (cep_code.length <= 0) return;
+
+                $.ajax({
+                    url: "https://localhost:44373/api/cep/" + cep_code,
+                    type: "GET",
+                    dataType: "json",
+                    success: function (data) {
+
+                        if (data.Status != 200) {
+                            alert(data.StatusMessage || "Houve um erro desconhecido");
+                            return;
+                        }
+
+                        $("input[name='ZIP']").val(data.CEP);
+                        $("input[name='Address']").val(data.Address);
+                        $("input[name='Neighborhood']").val(data.District);
+                        $("input[name='City']").val(data.City);
+                        $("input[name='State']").val(data.State);
+                    }
+                });
+
+
+            })
+        });
+    </script>
+    @*<script src="@Url.Content("~/Scripts/jquery-1.4.4.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")" type="text/javascript"></script>*@
+
 }

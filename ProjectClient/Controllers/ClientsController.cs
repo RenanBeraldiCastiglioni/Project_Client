@@ -15,7 +15,7 @@ namespace ProjectClient.Controllers
 
         public ClientsController(ProjectClientContext context)
         {
-            _context = context;
+             _context = context;
         }
 
         // GET: Clients
@@ -61,6 +61,7 @@ namespace ProjectClient.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+
             return View(client);
         }
 

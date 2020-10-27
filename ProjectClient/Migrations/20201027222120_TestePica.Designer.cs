@@ -9,8 +9,8 @@ using ProjectClient.Models;
 namespace ProjectClient.Migrations
 {
     [DbContext(typeof(ProjectClientContext))]
-    [Migration("20201022192731_Initial")]
-    partial class Initial
+    [Migration("20201027222120_TestePica")]
+    partial class TestePica
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,11 +28,16 @@ namespace ProjectClient.Migrations
 
                     b.Property<DateTime>("BirthDate");
 
-                    b.Property<double>("CPF");
+                    b.Property<string>("CPF")
+                        .IsRequired();
+
+                    b.Property<double>("CellphoneNumber");
 
                     b.Property<string>("Name");
 
                     b.Property<string>("Neighborhood");
+
+                    b.Property<double>("PhoneNumber");
 
                     b.Property<string>("State");
 

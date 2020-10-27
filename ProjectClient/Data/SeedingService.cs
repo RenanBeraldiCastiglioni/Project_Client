@@ -24,7 +24,7 @@ namespace ProjectClient.Data
             Client c1 = new Client
             {
                 Id = 1,
-                CPF = 54758150893,
+                CPF = "54758150893",
                 Name = "Jose da Silva",
                 BirthDate = new DateTime(1970, 07, 15),
                 Address = "Rua Itapinima",
@@ -35,7 +35,7 @@ namespace ProjectClient.Data
             Client c2 = new Client
             {
                 Id = 2,
-                CPF = 03922855849,
+                CPF = "03922855849",
                 Name = "Thiago Andrade",
                 BirthDate = new DateTime(1980, 04, 22),
                 Address = "Av Anastacio",
@@ -46,7 +46,7 @@ namespace ProjectClient.Data
             Client c3 = new Client
             {
                 Id = 3,
-                CPF = 14724460890,
+                CPF = "14724460890",
                 Name = "Maria Rose",
                 BirthDate = new DateTime(1964, 04, 18),
                 Address = "Rua Catao",

@@ -26,7 +26,8 @@ namespace ProjectClient.Migrations
 
                     b.Property<DateTime>("BirthDate");
 
-                    b.Property<double>("CPF");
+                    b.Property<string>("CPF")
+                        .IsRequired();
 
                     b.Property<double>("CellphoneNumber");
 
