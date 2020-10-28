@@ -1,6 +1,7 @@
 ﻿using ProjectClient.Bussiness;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Text;
 using System.Web.Mvc;
 
 namespace ProjectClient.Data
@@ -17,14 +18,35 @@ namespace ProjectClient.Data
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public override bool IsValid(object value)
+        public Models.CPF IsValid(string _cpf)
         {
-            if (value == null || string.IsNullOrEmpty(value.ToString()))
-                return true;
+            Models.CPF cpf = new Models.CPF();
+            StringBuilder mensagem = new StringBuilder();
 
-            bool valido = CPF.ValidaCPF(value.ToString());
-            return valido;
+            if (string.IsNullOrEmpty(_cpf))
+            {
+                cpf.Valido = false;
+                mensagem.AppendLine("O CPF não foi informado");
+            }
+
+            if (!CPF.ValidaCPF(_cpf))
+            {
+                cpf.Valido = false;
+                mensagem.AppendLine("O CPF informado é inválido");
+            }
+
+            cpf.Mensagem = mensagem.ToString();
+            return cpf;
         }
+
+        //public override bool IsValid(object value)
+        //{
+        //    if (value == null || string.IsNullOrEmpty(value.ToString()))
+        //        return true;
+
+        //    bool valido = CPF.ValidaCPF(value.ToString());
+        //    return valido;
+        //}
 
         /// <summary>
         /// Validação client
